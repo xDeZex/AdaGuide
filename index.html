@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Guide</title>
+    <style>
+      :root {
+        font-size: 18px;
+      }
+      html {
+        background-color: whitesmoke;
+      }
+      .code {
+        background-color: rgb(195, 195, 195); 
+        width: max-content; 
+        padding: 1em; 
+        border-radius: 0.5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+      .code_markers {
+        position: absolute;
+        margin-left: -0.6em;
+        display: flex;
+        flex-direction: column;
+      }
+      .code_markers > span {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .code_lines {
+        display: flex;
+        flex-direction: column;
+      }
+      article {
+        max-width: 1000px;
+        margin: auto;
+      }
+      .title {
+        margin-left: auto; 
+        margin-right: auto; 
+        width: fit-content;
+        text-align: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+      .title > h1, .title > h2 {
+        margin: 0;
+      }
+      h1 {
+        font-size: 2.4rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      h3 {
+        font-size: 1.6rem;
+      }
+      h4 {
+        font-size: 1.4rem;
+      }
+      h5 {
+        font-size: 1.2rem;
+      }
+      p {
+        line-height: 1.4em;
+      }
+
+    </style>
+</head>
+<body style="text-align: left;">
+    <article>
+        <div class="title">
+          <h1>Ada Guide</h1>
+          <h2>What I had to find out myself</h2>
+        </div>
+        <p>Ada is an old language and has a smaller community than other programming languages. Therefore, this will be a small gathering of good teaching material and tips, tricks and help that I had to find out for myself.</p>
+        <h3>Teaching Material</h3>
+        <p>I intend for this document to be complementary to the resources that already exist. Therefore, I will not explain much of how to program in Ada; I'll leave that to the experts.</p>
+        <p><b><a href="https://learn.adacore.com/index.html">LEARN.ADACORE.COM</a></b> is the perfect first thing to check out for learning Ada. They explain the syntax, the features and the concepts, as well as </p>
+        <h3>Installation on Windows</h3>
+        <p>Ada has a package manager called Alire. Along with being the main package manager for Ada it also handles projects and compiling.</p>
+        <h4>Installation of Alire</h4>
+        <p>Website: <a href="https://alire.ada.dev/docs/">https://alire.ada.dev/docs/</a></p>
+        <ul>
+            <li>Go to the website and continue on to the GitHub. Download the exe.</li>
+            <li>Install the exe</li>
+            <li>Add Alire to PATH (Standard folder: C:\Program Files\Alire\bin) <a href="https://www.wikihow.com/Change-the-PATH-Environment-Variable-on-Windows">(Guide for PATH)</a></li>
+            <li>Install msys2, either by writing alr in the command prompt or opening the Alire Powershell (found on the desktop after installation)</li>
+        </ul>
+        <p>To install a separate compiler and a more customizable project manager, which is needed if you use VSCode, you need to get GNAT and gpr.</p>
+        <ul>
+            <li>Go to any folder (I would recommend C:\Program Files, or similar) and create a folder for GNAT and gpr (name it gnat, or similar)</li>
+            <li>Open the newly created folder in the command prompt (if in C:\Program Files you need admin rights) and run:</li>
+            <div class="code">
+                <div class="code_markers">
+                    <span>$</span>
+                    <span>$</span>
+                </div>
+                <div class="code_lines">
+                    <span>alr get gnat_native</span>
+                    <span>alr get gprbuild</span>
+                </div>
+            </div>
+            <li>Add both their \bin folders to PATH</li>
+        </ul>
+        <p>Website for a bit of further reading: <a href="https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire">https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire</a></p>
+    </article>
+
+</body>
+</html>
