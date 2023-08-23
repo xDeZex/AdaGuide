@@ -11,6 +11,13 @@
       html {
         background-color: whitesmoke;
       }
+      .note {
+        background-color: rgb(195, 195, 195);
+        padding: 1em; 
+        border-radius: 0.5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
       .code {
         background-color: rgb(195, 195, 195); 
         width: max-content; 
@@ -21,9 +28,18 @@
       }
       .code_markers {
         position: absolute;
-        margin-left: -0.6em;
+        margin-left: -1em;
+        margin-top: -1em;
+        width: 1.2em;
+        gap: 0.1em;
         display: flex;
         flex-direction: column;
+        justify-content: center;
+
+        background-color: rgb(175, 175, 175);
+        padding: 1em 0em 1em 0em;
+        border-radius: 0.5em 0 0 0.5em;
+
       }
       .code_markers > span {
         -webkit-user-select: none;
@@ -31,10 +47,19 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        text-align: center;
       }
       .code_lines {
         display: flex;
         flex-direction: column;
+        margin-left: 0.2em;
+        gap: 0.1em;
+      }
+      .code_lines-inline {
+        margin-left: 1em;
+      }
+      .code_lines-inline2 {
+        margin-left: 1.8em;
       }
       article {
         max-width: 1000px;
@@ -48,17 +73,17 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
       }
-      .title > h1, .title > h2 {
+      .title > * {
         margin: 0;
       }
       h1 {
-        font-size: 2.4rem;
+        font-size: 2.6rem;
       }
       h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       h3 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
       h4 {
         font-size: 1.4rem;
@@ -76,7 +101,7 @@
     <article>
         <div class="title">
           <h1>Ada Guide</h1>
-          <h2>What I had to find out myself</h2>
+          <h5>What I had to find out myself</h5>
         </div>
         <p>Ada is an old language and has a smaller community than other programming languages. Therefore, this will be a small gathering of good teaching material and tips, tricks and help that I had to find out for myself.</p>
 
@@ -84,8 +109,8 @@
         <p>I intend for this document to be complementary to the resources that already exist. Therefore, I will not explain much of how to program in Ada; I'll leave that to the experts.</p>
         <p><b><a href="https://learn.adacore.com/index.html">LEARN.ADACORE.COM</a></b> is the perfect first thing to check out for learning Ada. They explain the syntax, the features and the concepts. I can recommend the "Ada for the C++ or Java Developer" part. They also have labs with exercises and a more advanced part for more in depth explanations.</p>
         <p><b><a href="http://pchapin.org/Ada/AdaCrash.pdf">Ada-A Crash Course</a></b> (PDF), written by Peter Chapin, is another good resource for a general overview of Ada. I found this to be a good companion to ADACORE: I got a clearer understanding of how Ada works after reading it. Alas, it isn't finished and lack some important parts, like OOP and Tasks.</p>
-        <p><b><a href="https://youtu.be/YPD9U4Wuh5A">Ada Programming Introduction</a></b>(Video) is a youtube video introducing the basics of Ada. Good for getting a taste of programming in Ada, but lacks examples and substantiality.</p>
-        <p><b><a href="https://www.youtube.com/@AdaCore05">AdaCore's youtube channel</a></b> have many videos on Ada: tutorials, talks, workshops and more. Their tutorials is a good first step into Ada and the various talks are good for a more in depth look at the Ada community.</p>
+        <p><b><a href="https://youtu.be/YPD9U4Wuh5A">Ada Programming Introduction</a></b> (Video) is a youtube video introducing the basics of Ada. Good for getting a taste of programming in Ada, but lacks examples and substantiality.</p>
+        <p><b><a href="https://www.youtube.com/@AdaCore05">AdaCore's Youtube channel</a></b> have many videos on Ada: tutorials, talks, workshops and more. Their tutorials is a good first step into Ada and the various talks are good for a more in depth look at the Ada community.</p>
         <h3>Installation on Windows</h3>
         <p>Ada has a package manager called Alire. Along with being the main package manager for Ada it also handles projects and compiling.</p>
         <h4>Installation of Alire</h4>
@@ -96,7 +121,7 @@
             <li>Add Alire to PATH (Standard folder: C:\Program Files\Alire\bin) <a href="https://www.wikihow.com/Change-the-PATH-Environment-Variable-on-Windows">(Guide for PATH)</a></li>
             <li>Install msys2, either by writing alr in the command prompt or opening the Alire Powershell (found on the desktop after installation)</li>
         </ul>
-        <p>To install a separate compiler and a more customizable project manager, which is needed if you use VSCode, you need to get GNAT and gpr.</p>
+        <p>To install a separate compiler and a more customizable project manager, which is needed if you use VS Code, you need to get GNAT and gpr.</p>
         <ul>
             <li>Go to any folder (I would recommend C:\Program Files, or similar) and create a folder for GNAT and gpr (name it gnat, or similar)</li>
             <li>Open the newly created folder in the command prompt (if in C:\Program Files you need admin rights) and run:</li>
@@ -113,6 +138,167 @@
             <li>Add both their \bin folders to PATH</li>
         </ul>
         <p>Website for a bit of further reading: <a href="https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire">https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire</a></p>
+        <h3>Creating a project</h3>
+        <p>To create a project with Alire you run:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>$</span>
+          </div>
+          <div class="code_lines">
+              <span>alr init --bin [name]</span>
+          </div>
+        </div>
+        <p>This creates help-files for Alire to compile and run your code. Some important files are:</p>
+        <ul>
+          <li>alire.toml, which describes the project and which exe is run with "alire run".</li>
+          <li>[project-name].gpr, which describes how the project should be compiled. For example, which file has the main procedure.</li>
+        </ul>
+        <p>Now, if you use VS Code you have to add the project file to the settings. Specifically, Settings > Extensions > Ada > Project File and write [project-name].gpr. Though, this is a setting for VS Code and the setting points at the folder currently open in VS Code, so if your project is further down in the file structure, you have to explicitly point to it. This is easily done by right clicking the project file and copying its relative path.</p>
+        <p>After that, you have to run <i>alr build</i> to get necessary configs and restart VS Code. Only then will you have working language support for Ada.</p>
+        <p><i>alr run</i> both compiles and runs the code, <i>alr run -s</i> only runs the previously compiled exe.</p>
+        <p>As the config defines what file to compile to and what file to run separately, one of those values changing might mean you compile into one file and run another. Thus, I advice to delete old exes in \bin when changing such values in the config.</p>
+        <h3>Ada as a language</h3>
+        <p>Here I will explain how I see the Ada language. This wont be exact, maybe not even true, but rather my way of thinking about it, especially on how Ada is similar, or dissimilar, to other OO languages.</p>
+        <p>Ada is made for two things: real-time computing and code safety. Real-time computing comes from the in-built <i>delay</i> and <i>delay until</i> commands. Code safety comes from the extremely strong typing and strict compiling, which can be even stricter with Ada SPARK.</p>
+        <h4>Object-Oriented Programming</h4>
+        <p>TODO: talk about modules and stuff like that. Encapsulation and sharing </p>
+        <p>Ada is object-oriented, but not in the same way that Java is. There is a "this" and there are pointers to objects, but they don't behave like you would expect. "this" in Ada is not explicit, in fact, objects don't have subprograms attached to them. While you can call <i>My_Class.My_Procedure</i>, My_Procedure isn't attached to My_Class. Instead the definition of My_Procedure is:</p> 
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+          </div>
+          <div class="code_lines">
+            <span>procedure My_Procedure (Self: in out My_Class);</span>
+          </div>
+        </div>
+        <p>It's only syntactically that it seems to be apart of My_Class — and "this" only comes from the parameter "Self". In the same vein, while there are pointers (through the access keyword), they cannot be used as a Java programmer would expect. If the Ada compiler isn't sure the object will exist for the whole lifetime of the pointer it will complain. This makes it harder to pass it to procedures like one would do in Java.</p>
+
+        <h4>Protected vs Task</h4>
+        <p>A task in Ada is "a thread", in the way that it runs alongside Main. A task can have entries where Main and the task can meet up (rendezvous). Entries can have parameters that pass values to the task in just the scope of the entry.</p>
+        <p>Objects can be protected. This is a way of avoiding multiple tasks accessing shared data at the same time. Protected objects can have procedures and functions, that behave as one would expect. But, protected objects also have entries. These entries are not the same as the entries in a task. Instead of being a meet up point, it's, basically, a procedure with capability of blocking a task until a condition is met. For example:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+          </div>
+          <div class="code_lines">
+            <span>entry Block when not Do_Block is</span>
+            <span>begin</span>
+            <span class="code_lines-inline">Put_Line ("Not blocked now");</span>
+            <span>end Block;</span>
+          </div>
+        </div>
+        <h3>Custom Data Types</h3>
+        <p>To facilitate the strong typing which creates the high code safety Ada aims for, Ada has easily made custom data types. One can create a data type of any kind and any range. For example:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+          </div>
+          <div class="code_lines">
+            <span>type Months is range 1 .. 12;</span>
+          </div>
+        </div>
+        <p>One can also create subtypes that is a limited version of another type. Subtypes can be used instead of the main type in parameter values. Two examples:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+            <span>2</span>
+          </div>
+          <div class="code_lines">
+            <span>type Limited_Int is Integer range 300 .. Integer'Last;</span>
+            <span>type Summer_Months is Months range 5 .. 8;</span>
+          </div>
+        </div>
+        <p>One can also have types which are enums:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+          </div>
+          <div class="code_lines">
+            <span>type Weekdays is (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);</span>
+          </div>
+        </div>
+        <h3>Unit testing</h3>
+        <p>Unit testing in Ada is supported and has several third-party packages and tools which support the developer. With that said, the guides are few and limited in how much they teach. Especially, I haven't found how one is to actually create the files and run them for the unit tests. Therefore, the following will be an explanation how I made it work.</p>
+        <h4>Setup</h4>
+        <p>Firstly, the setup: create a project with Alire, create some code to be tested.</p>
+        <p>After that, navigate in the terminal to the project folder and write <i>alr with AUnit</i>. Accept the changes. </p>
+        <p>Now you might be met with an error: "Deployment of source archive AUnit -23.0.0.zip [...] failed". In my case this was caused by me having the project in my OneDrive folder, a folder which has a space in its name. So, I had to move my project elsewhere and write <i>alr with AUnit</i>, and then move the project back where I wanted it.</p>
+        <h4>AUnit</h4>
+        <p>You now have a Alire project with the necessary setup to do unit testing, but you have no code, and no clear way to run any code. I will explain how I managed to write unit tests and run the code in a quick and easy way.</p>
+        <p>There is also an AdaCore guide on AUnit (<a href="https://docs.adacore.com/live/wave/aunit/html/aunit_cb/aunit_cb/introduction.html">link</a>), though I find it confusing and insufficient.</p>
+        <p>Begin by looking in the AUnit crate, you find it in: "[your project]\alire\cache\dependencies". In it you find the source files for AUnit and, the more helpful, examples and templates.</p>
+        <p>If we start with the examples, let's use "simple_test" to explain the structure. simple_test includes two source files, math.adb and math.ads, they define two functions: addition and subtraction. There are also tests, five files: math_suite.adb/ads, math-test.adb/ads and test_math.adb.</p>
+        <p>In AUnit, there is a structure of test cases -> test suite -> harness. The test cases are individual procedures with assert statements. The test suite is what runs the test cases together and the harness is what calls the suite and reports its results. To create some basic test cases you mostly only need to edit the test cases.</p>
+        <p class="note">To run the tests in the examples, you need to edit the [example]\harness.gpr file. At the top, from: <i>with "aunit";</i>, to: <i>with "..\..\lib\gnat\aunit.gpr";</i>. Then you can build it with <i>gprbuild</i> and run the created .exe in the terminal.</p>
+        <p>Let's start looking from the top. In the "simple_test" example the test_math.adb file is the harness. All it does is importing Math_Suite and starts a <i>AUnit.Run.Test_Runner</i> which runs the test suite.</p>
+        <p>In turn, the test suite, in math_suite.adb/ads, only imports the test cases and adds them.</p>
+        <p>The test cases, in math-test.adb/ads, defines the actual test cases and their names.</p>
+        <p>Now the test in "simple_test" is extremely simple and I highly recommend looking at the other examples to get an understanding of what is possible with AUnit, and maybe even copying them for your own projects.</p>
+        <h5>My own example</h5>
+        <p>I have created tests for my own project (<a href="https://github.com/xDeZex/Ada-Examples/tree/main/elevator">link</a>). The project is an elevator which goes to different floors and people can enter and exit the elevator. It's meant to be an introduction to real-time programming and is created in such a way that someone could create their own algorithm to solve the problem of getting every person in the building to their wanted floor.</p>
+        <p>Lets explain it the same way as last time: from top to bottom. harness.adb is the harness and simply executes and reports on the test suite. building_suite.adb/ads is the suite and only adds the test cases. The test cases are defined in building.tests.adb/ads and here we see the difference from "simple_test".</p>
+        <p>In addition to defining the test cases, there are also the subprograms of Register_Tests and Set_Up. In Register_Tests we add every test case we want to test; this can be used to dynamically add certain test cases based on what you want to test. In Set_Up we have the set up that will be done automatically before each test, in this example it creates a building manager and adds specific people to specific floors for easy testing. There is an equivalent procedure Tear_Down which I don't use here.</p>
+        <p>For an easy way to run the tests each time you build the Alire project, you need firstly to make sure the harness.gpr file has the correct source directives. It should look like, or similar to: </p>
+        <div class="code">
+          <div class="code_markers">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+            <span>12</span>
+            <span>13</span>
+            <span>14</span>
+            <span>15</span>
+            <span>16</span>
+            <span>17</span>
+            <span>18</span>
+          </div>
+          <div class="code_lines">
+            <span>with "config/elevator_config.gpr";</span>
+            <span>project Harness is</span>
+            <span class="code_lines-inline">for Source_Dirs use ("../src/", "../config/", ".");</span>
+            <span class="code_lines-inline">for Object_Dir use "obj/" & Elevator_Config.Build_Profile;</span>
+            <span class="code_lines-inline">for Create_Missing_Dirs use "True";</span>
+            <span class="code_lines-inline">for Exec_Dir use "../bin";</span>
+            <span class="code_lines-inline">for Main use ("harness.adb");</span>
+            <span class="code_lines-inline">package Compiler is</span>
+            <span class="code_lines-inline2">for Default_Switches ("Ada") use</span>
+            <span class="code_lines-inline2">Elevator_Config.Ada_Compiler_Switches;</span>
+            <span class="code_lines-inline">end Compiler;</span>
+            <span class="code_lines-inline">package Binder is</span>
+            <span class="code_lines-inline2">for Switches ("Ada") use ("-Es"); --  Symbolic traceback</span>
+            <span class="code_lines-inline">end Binder;</span>
+            <span class="code_lines-inline">package Install is</span>
+            <span class="code_lines-inline2">for Artifacts (".") use ("share");</span>
+            <span class="code_lines-inline">end Install;</span>
+            <span>end Harness;</span>
+          </div>
+        </div>
+        <p>Secondly, to build and run the tests with <i>alr run</i> two changes to alire.toml are necessary. The first is to add the harness.gpr file to the project files, the second is to add harness as an executable. In the elevator example it looks like:</p>
+        <div class="code">
+          <div class="code_markers">
+            <span>8</span>
+            <span>9</span>
+          </div>
+          <div class="code_lines">
+            <span>project-files = ["elevator.gpr", "tests/harness.gpr"]</span>
+            <span>executables = ["harness", "elevatorexample"]</span>
+          </div>
+        </div>
+        <p>Then, to run the tests, execute the command: <i>alr run harness.exe</i>, and to run the main program: <i>alr run elevatorexample.exe</i></p>
+        <p class="note">When you write your own tests, I recommend you to start from the template tests files that are provided in the AUnit crate.</p>
+
+        read only config
     </article>
 
 </body>
