@@ -111,6 +111,7 @@
         <p><b><a href="http://pchapin.org/Ada/AdaCrash.pdf">Ada-A Crash Course</a></b> (PDF), written by Peter Chapin, is another good resource for a general overview of Ada. I found this to be a good companion to ADACORE: I got a clearer understanding of how Ada works after reading it. Alas, it isn't finished and lack some important parts, like OOP and Tasks.</p>
         <p><b><a href="https://youtu.be/YPD9U4Wuh5A">Ada Programming Introduction</a></b> (Video) is a youtube video introducing the basics of Ada. Good for getting a taste of programming in Ada, but lacks examples and substantiality.</p>
         <p><b><a href="https://www.youtube.com/@AdaCore05">AdaCore's Youtube channel</a></b> have many videos on Ada: tutorials, talks, workshops and more. Their tutorials is a good first step into Ada and the various talks are good for a more in depth look at the Ada community.</p>
+        <p><b><a href="https://sites.radford.edu/~nokie/classes/320/">Radford University's course on Ada</a></b> is a complete course on procedural analysis and design using Ada. It has homework assignments, notes, links to almost every Ada resource online. Sadly, it doesn't have the full lectures for the course.</p>
         <h3>Installation on Windows</h3>
         <p>Ada has a package manager called Alire. Along with being the main package manager for Ada it also handles projects and compiling.</p>
         <h4>Installation of Alire</h4>
@@ -161,7 +162,6 @@
         <p>Here I will explain how I see the Ada language. This wont be exact, maybe not even true, but rather my way of thinking about it, especially on how Ada is similar, or dissimilar, to other OO languages.</p>
         <p>Ada is made for two things: real-time computing and code safety. Real-time computing comes from the in-built <i>delay</i> and <i>delay until</i> commands. Code safety comes from the extremely strong typing and strict compiling, which can be even stricter with Ada SPARK.</p>
         <h4>Object-Oriented Programming</h4>
-        <p>TODO: talk about modules and stuff like that. Encapsulation and sharing </p>
         <p>Ada is object-oriented, but not in the same way that Java is. There is a "this" and there are pointers to objects, but they don't behave like you would expect. "this" in Ada is not explicit, in fact, objects don't have subprograms attached to them. While you can call <i>My_Class.My_Procedure</i>, My_Procedure isn't attached to My_Class. Instead the definition of My_Procedure is:</p> 
         <div class="code">
           <div class="code_markers">
@@ -172,6 +172,7 @@
           </div>
         </div>
         <p>It's only syntactically that it seems to be apart of My_Class — and "this" only comes from the parameter "Self". In the same vein, while there are pointers (through the access keyword), they cannot be used as a Java programmer would expect. If the Ada compiler isn't sure the object will exist for the whole lifetime of the pointer it will complain. This makes it harder to pass it to procedures like one would do in Java.</p>
+        <p>The object-oriented part of Ada is, in fact, split into two. Packages and records, together these two provide almost the same functionalities as a class. Packages provide encapsulation and access control, while records provide the type and the template. To read more about this, look at <a href="https://sites.radford.edu/~nokie/classes/320/packages/packages-comparison.html">Packages vs. Classes</a> and <a href="https://sites.radford.edu/~nokie/classes/320/records/recordsvsclasses.html">Records vs. Classes</a>.</p>
 
         <h4>Protected vs Task</h4>
         <p>A task in Ada is "a thread", in the way that it runs alongside Main. A task can have entries where Main and the task can meet up (rendezvous). Entries can have parameters that pass values to the task in just the scope of the entry.</p>
