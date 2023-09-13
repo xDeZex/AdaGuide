@@ -115,6 +115,13 @@
           <li><a href="#config">Alire Config</a></li>
           <li><a href="#examples">My Examples</a></li>
         </ul>
+        <h3 id="">Path to Ada</h3>
+        <p>This is a short, non-specific and liberal path to learn Ada:</p>
+        <ol>
+          <li>Read through the <a href="https://learn.adacore.com/index.html">AdaCore website</a>.</li>
+          <li>Do the homework for the <a href="https://sites.radford.edu/~nokie/classes/320/">Radford course</a>.</li>
+          <li>Look at my <a href="#examples">examples</a>.</li>
+        </ol>
         <h3 id="teaching">Teaching Material</h3>
         <p>I intend for this document to be complementary to the resources that already exist. Therefore, I will not explain much of how to program in Ada; I'll leave that to the experts.</p>
         <p><b><a href="https://learn.adacore.com/index.html">LEARN.ADACORE.COM</a></b> is the perfect first thing to check out for learning Ada. They explain the syntax, the features and the concepts. I can recommend the "Ada for the C++ or Java Developer" part. They also have labs with exercises and a more advanced part for more in depth explanations.</p>
@@ -330,8 +337,10 @@
           <li><a href="#examples-trainstation">Train Station</a></li>
         </ul>
         <h4 id="examples-varied">Varied Examples</h4>
+        <a href="https://github.com/xDeZex/Ada-Examples/tree/main/varied">Link</a>
         <p>This is a varied gathering of examples of different Ada concepts and constructs. If-statements, for-loops, tasks and more are written out in their simples form for you to peruse. It's meant as "glossary" for Ada.</p>
         <h4 id="examples-fibonacci">Fibonacci</h4>
+        <a href="https://github.com/xDeZex/Ada-Examples/tree/main/fibonacci">Link</a>
         <p>A simple program which calculates Fibonacci numbers in three different ways. This can be used as exercise:</p>
         <p>Write a program which can calculate the 50th Fibonacci number. Three levels of this exercise is:</p>
         <ol>
@@ -340,6 +349,7 @@
           <li>Create a solution in O(n) with a container.</li>
         </ol>
         <h4 id="examples-reversewords">Reverse Words</h4>
+        <a href="https://github.com/xDeZex/Ada-Examples/tree/main/reversewords">Link</a>
         <p>As and exercise: write a program which takes a string and reverse the words, so that "Hello World" becomes "World Hello". Levels of this exercise is:</p>
         <ol>
           <li>Create a program which reverses the words of a constant, hard-coded string.</li>
@@ -348,15 +358,23 @@
         </ol>
         <p>For my example, I used the string: "Pull up, Eva! Were here! Wave! Pull up!", which reversed is: "up! Pull Wave! here! Were Eva! up, Pull". This is an excellent opportunity to use unit tests and TDD.</p>
         <h4 id="examples-elevator">Elevator</h4>
-        <p>This example is designed as an exercise. The task is to create a efficient algorithm for an elevator. In the example a house has ten floors and one elevator, and there are people on every floor that wants to move to other floors. The time taken for the elevator is measured in "time units". The time the elevator takes to move between floors is three time units and for a person to enter or exit the elevator is one time unit.</p>
-        <p>Provided is a inefficient example (elevatorexample.adb). The exercise is to rewrite elevatorexample.adb to be faster, without changing anything in building.adb/ads. To get information about the elevator and the people traveling on it there are several subprograms to be used from the Elevator type. The elevator should be moved through the Building Manger.</p>
+        <a href="https://github.com/xDeZex/Ada-Examples/tree/main/elevator">Link</a>
+        <p>This example is designed as an exercise. The task is to create a efficient algorithm for an elevator. In the example, a house has ten floors and one elevator, and there are people on every floor that wants to move to other floors. The time taken for the elevator is measured in "time units". The time the elevator takes to move between floors is three time units and for a person to enter or exit the elevator is one time unit.</p>
+        <p>Provided is a inefficient example (elevatorexample.adb). The exercise is to rewrite elevatorexample.adb to be faster, without changing anything in building.adb/ads. To get information about the elevator and the people traveling on it there are several subprograms to be used from the Elevator type. The elevator should be moved through calls to the Building Manger.</p>
         <p>Time units are defined in building.ads, but can be changed before the call to <i>Construct_building_Manager</i>, though for small time units the computers speed will have a great effect on the total time taken.</p>
         <p>The inefficient solution will always use 128 time units for the elevator. You should try to improve both the total and elevator time.</p>
-        TODO : make harder alternative.
         <h4 id="examples-trainstation">Train Station</h4>
-        wikipedia airport
-        trainstation with trains coming at times and needing a place to stay for some time. 3 ports for them, with capacity for some trains. when train is done it leaves, if it is the first one on the port, otherwise it waits until the one in front of it is done.
+        <a href="https://github.com/xDeZex/Ada-Examples/tree/main/trainstation">Link</a>
+        <p>The Wikipedia article on Ada has an example of concurrency which is quite good (<a href="https://en.wikipedia.org/wiki/Ada_(programming_language)#Concurrency">link</a>). To implement the concepts introduced there, I decided to make a train station. The trains station would operate based on some criteria:</p>
+        <ul>
+          <li>Trains would arrive at the train station one at a time.</li>
+          <li>Trains would arrive at the train station at random times.</li>
+          <li>Trains would leave the train station after a known, random amount of time.</li>
+          <li>The train station would have multiple tracks.</li>
+          <li>Each track would have space for multiple trains.</li>
+          <li>Only trains at the front of each track would be able to leave (first-in, first-out).</li>
+        </ul>
+        <p>Implementing this gives the opportunity to solve an optimization problem: have the trains arrive and leave the train station in the least amount of time.</p>
     </article>
-
 </body>
 </html>
