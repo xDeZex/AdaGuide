@@ -103,16 +103,26 @@
           <h1>Ada Guide</h1>
           <h5>What I had to find out myself</h5>
         </div>
-        <p>Ada is an old language and has a smaller community than other programming languages. Therefore, this will be a small gathering of good teaching material and tips, tricks and help that I had to find out for myself.</p>
-
-        <h3>Teaching Material</h3>
+        <p>Ada is an old language and has a smaller community than other programming languages. Therefore, this will be a small gathering of good teaching material and tips, tricks and help that I had to find out for myself. I have also made examples, available on GitHub, with descriptions so you can either try to code it yourself, or see how I did it.</p>
+        <h4>Table of Contents</h4>
+        <ul>
+          <li><a href="#teaching">Teaching Material</a></li>
+          <li><a href="#installation">Installation on Windows</a></li>
+          <li><a href="#project">Creating a Project</a></li>
+          <li><a href="#language">Ada as a Language</a></li>
+          <li><a href="#datatypes">Custom Data Types</a></li>
+          <li><a href="#testing">Unit Testing</a></li>
+          <li><a href="#config">Alire Config</a></li>
+          <li><a href="#examples">My Examples</a></li>
+        </ul>
+        <h3 id="teaching">Teaching Material</h3>
         <p>I intend for this document to be complementary to the resources that already exist. Therefore, I will not explain much of how to program in Ada; I'll leave that to the experts.</p>
         <p><b><a href="https://learn.adacore.com/index.html">LEARN.ADACORE.COM</a></b> is the perfect first thing to check out for learning Ada. They explain the syntax, the features and the concepts. I can recommend the "Ada for the C++ or Java Developer" part. They also have labs with exercises and a more advanced part for more in depth explanations.</p>
         <p><b><a href="http://pchapin.org/Ada/AdaCrash.pdf">Ada-A Crash Course</a></b> (PDF), written by Peter Chapin, is another good resource for a general overview of Ada. I found this to be a good companion to ADACORE: I got a clearer understanding of how Ada works after reading it. Alas, it isn't finished and lack some important parts, like OOP and Tasks.</p>
         <p><b><a href="https://youtu.be/YPD9U4Wuh5A">Ada Programming Introduction</a></b> (Video) is a youtube video introducing the basics of Ada. Good for getting a taste of programming in Ada, but lacks examples and substantiality.</p>
         <p><b><a href="https://www.youtube.com/@AdaCore05">AdaCore's Youtube channel</a></b> have many videos on Ada: tutorials, talks, workshops and more. Their tutorials is a good first step into Ada and the various talks are good for a more in depth look at the Ada community.</p>
         <p><b><a href="https://sites.radford.edu/~nokie/classes/320/">Radford University's course on Ada</a></b> is a complete course on procedural analysis and design using Ada. It has homework assignments, notes, links to almost every Ada resource online. Sadly, it doesn't have the full lectures for the course.</p>
-        <h3>Installation on Windows</h3>
+        <h3 id="installation">Installation on Windows</h3>
         <p>Ada has a package manager called Alire. Along with being the main package manager for Ada it also handles projects and compiling.</p>
         <h4>Installation of Alire</h4>
         <p>Website: <a href="https://alire.ada.dev/docs/">https://alire.ada.dev/docs/</a></p>
@@ -139,7 +149,7 @@
             <li>Add both their \bin folders to PATH</li>
         </ul>
         <p>Website for a bit of further reading: <a href="https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire">https://www.noureddine.org/articles/ada-on-windows-and-linux-an-installation-guide#alire</a></p>
-        <h3>Creating a project</h3>
+        <h3 id="project">Creating a project</h3>
         <p>To create a project with Alire you run:</p>
         <div class="code">
           <div class="code_markers">
@@ -158,7 +168,7 @@
         <p>After that, you have to run <i>alr build</i> to get necessary configs and restart VS Code. Only then will you have working language support for Ada.</p>
         <p><i>alr run</i> both compiles and runs the code, <i>alr run -s</i> only runs the previously compiled exe.</p>
         <p>As the config defines what file to compile to and what file to run separately, one of those values changing might mean you compile into one file and run another. Thus, I advice to delete old exes in \bin when changing such values in the config.</p>
-        <h3>Ada as a language</h3>
+        <h3 id="language">Ada as a language</h3>
         <p>Here I will explain how I see the Ada language. This wont be exact, maybe not even true, but rather my way of thinking about it, especially on how Ada is similar, or dissimilar, to other OO languages.</p>
         <p>Ada is made for two things: real-time computing and code safety. Real-time computing comes from the in-built <i>delay</i> and <i>delay until</i> commands. Code safety comes from the extremely strong typing and strict compiling, which can be even stricter with Ada SPARK.</p>
         <h4>Object-Oriented Programming</h4>
@@ -191,7 +201,7 @@
             <span>end Block;</span>
           </div>
         </div>
-        <h3>Custom Data Types</h3>
+        <h3 id="datatypes">Custom Data Types</h3>
         <p>To facilitate the strong typing which creates the high code safety Ada aims for, Ada has easily made custom data types. One can create a data type of any kind and any range. For example:</p>
         <div class="code">
           <div class="code_markers">
@@ -221,7 +231,7 @@
             <span>type Weekdays is (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);</span>
           </div>
         </div>
-        <h3>Unit testing</h3>
+        <h3 id="testing">Unit testing</h3>
         <p>Unit testing in Ada is supported and has several third-party packages and tools which support the developer. With that said, the guides are few and limited in how much they teach. Especially, I haven't found how one is to actually create the files and run them for the unit tests. Therefore, the following will be an explanation how I made it work.</p>
         <h4>Setup</h4>
         <p>Firstly, the setup: create a project with Alire, create some code to be tested.</p>
@@ -285,7 +295,7 @@
             <span>end Harness;</span>
           </div>
         </div>
-        <p>Secondly, to build and run the tests with <i>alr run</i> two changes to alire.toml are necessary. The first is to add the harness.gpr file to the project files, the second is to add harness as an executable. In the elevator example it looks like:</p>
+        <p>Secondly, to build and run the tests with <i>alr run</i>, two changes to alire.toml are necessary. The first is to add the harness.gpr file to the project files, the second is to add "harness" as an executable. In the elevator example it looks like:</p>
         <div class="code">
           <div class="code_markers">
             <span>8</span>
@@ -299,7 +309,53 @@
         <p>Then, to run the tests, execute the command: <i>alr run harness.exe</i>, and to run the main program: <i>alr run elevatorexample.exe</i></p>
         <p class="note">When you write your own tests, I recommend you to start from the template tests files that are provided in the AUnit crate.</p>
 
-        read only config
+        <h3 id="config">Alire Config</h3>
+        <p>Alire creates a config used for compiling the project, in the <i>[project]\config</i> folder. This config includes what flags to use when compiling. Many of these flags are unnecessary, they only give warnings on the styling of the code: indentation, spaces and other small things. Also, it might become hard to actually find the errors that's printed in between the many warnings.</p>
+        <p>Some of the warnings are good to have, but many of them you can live without. Here is a list of flags I remove or edit:</p>
+        <ul>
+          <li>"-gnaty3": this specifies a indentation level of three, you might want to change it to the more normal four (or remove it completely).</li>
+          <li>"-gnatyb": gives a warning when you end a row with a space.</li>
+          <li>"-gnatyc": warns when you, in a comment, doesn't follow the two dashes with two spaces.</li>
+          <li>"-gnatyu": only allows one empty row consecutively.</li>
+          <li>"-gnatyt": demands a space between many of the tokens. I personally like this styling, but most don't follow it.</li>
+        </ul>
+        <p>Furthermore, here is also the place for adding a flag to indicate which Ada version to use. I prefer using Ada2022, so I add <i>"-gnat2022"</i>. Also, if you don't want Alire to, maybe, overwrite your changes, you should make the <i>[project]_config.gpr</i> file read-only.</p>
+        <h3 id="examples">My Examples</h3>
+        <p>At some point when learning a language you have apply all that you've read and actually code something. To begin with, I recommend the Radford course, there is a whole syllabus and five homework assignments available. To expand on that course and train some of the more advanced concepts available in Ada, I have made some examples.</p>
+        <ul>
+          <li><a href="#examples-varied">Varied Examples</a></li>
+          <li><a href="#examples-fibonacci">Fibonacci</a></li>
+          <li><a href="#examples-reversewords">Reverse Words</a></li>
+          <li><a href="#examples-elevator">Elevator</a></li>
+          <li><a href="#examples-trainstation">Train Station</a></li>
+        </ul>
+        <h4 id="examples-varied">Varied Examples</h4>
+        <p>This is a varied gathering of examples of different Ada concepts and constructs. If-statements, for-loops, tasks and more are written out in their simples form for you to peruse. It's meant as "glossary" for Ada.</p>
+        <h4 id="examples-fibonacci">Fibonacci</h4>
+        <p>A simple program which calculates Fibonacci numbers in three different ways. This can be used as exercise:</p>
+        <p>Write a program which can calculate the 50th Fibonacci number. Three levels of this exercise is:</p>
+        <ol>
+          <li>Create a solution with a recursive function.</li>
+          <li>Create a solution in O(n) with an array.</li>
+          <li>Create a solution in O(n) with a container.</li>
+        </ol>
+        <h4 id="examples-reversewords">Reverse Words</h4>
+        <p>As and exercise: write a program which takes a string and reverse the words, so that "Hello World" becomes "World Hello". Levels of this exercise is:</p>
+        <ol>
+          <li>Create a program which reverses the words of a constant, hard-coded string.</li>
+          <li>Create a solution which runs in O(n).</li>
+          <li>Create a program which reverses the words of user input, for example: inputted as command line arguments.</li>
+        </ol>
+        <p>For my example, I used the string: "Pull up, Eva! Were here! Wave! Pull up!", which reversed is: "up! Pull Wave! here! Were Eva! up, Pull". This is an excellent opportunity to use unit tests and TDD.</p>
+        <h4 id="examples-elevator">Elevator</h4>
+        <p>This example is designed as an exercise. The task is to create a efficient algorithm for an elevator. In the example a house has ten floors and one elevator, and there are people on every floor that wants to move to other floors. The time taken for the elevator is measured in "time units". The time the elevator takes to move between floors is three time units and for a person to enter or exit the elevator is one time unit.</p>
+        <p>Provided is a inefficient example (elevatorexample.adb). The exercise is to rewrite elevatorexample.adb to be faster, without changing anything in building.adb/ads. To get information about the elevator and the people traveling on it there are several subprograms to be used from the Elevator type. The elevator should be moved through the Building Manger.</p>
+        <p>Time units are defined in building.ads, but can be changed before the call to <i>Construct_building_Manager</i>, though for small time units the computers speed will have a great effect on the total time taken.</p>
+        <p>The inefficient solution will always use 128 time units for the elevator. You should try to improve both the total and elevator time.</p>
+        TODO : make harder alternative.
+        <h4 id="examples-trainstation">Train Station</h4>
+        wikipedia airport
+        trainstation with trains coming at times and needing a place to stay for some time. 3 ports for them, with capacity for some trains. when train is done it leaves, if it is the first one on the port, otherwise it waits until the one in front of it is done.
     </article>
 
 </body>
